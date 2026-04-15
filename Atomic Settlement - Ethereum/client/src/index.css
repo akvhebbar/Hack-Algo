@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: 'Outfit', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    /* Deep Tech Dark Mode Palette */
+    --background: 230 40% 4%;
+    --foreground: 210 40% 98%;
+
+    --card: 230 30% 8%;
+    --card-foreground: 210 40% 98%;
+    --card-border: 230 30% 15%;
+
+    --popover: 230 30% 8%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Neon Cyan / Electric Blue */
+    --primary: 180 100% 50%;
+    --primary-foreground: 230 40% 4%;
+
+    --secondary: 220 80% 20%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 230 30% 15%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 220 100% 50%;
+    --accent-foreground: 210 40% 98%;
+
+    /* Glowing Emerald Green */
+    --success: 144 100% 50%;
+    --success-foreground: 230 40% 4%;
+
+    /* Glowing Crimson / Red-Orange */
+    --destructive: 348 100% 50%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 230 30% 15%;
+    --input: 230 30% 12%;
+    --ring: 180 100% 50%;
+
+    --radius: 0.75rem;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-primary/30;
+    font-family: var(--font-display);
+    background-image: 
+      radial-gradient(circle at 50% 0%, hsl(var(--primary) / 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 100% 100%, hsl(var(--accent) / 0.05) 0%, transparent 50%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    @apply font-bold tracking-tight;
+  }
+
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+}
+
+@layer utilities {
+  .glow-primary {
+    box-shadow: 0 0 20px -5px hsl(var(--primary) / 0.5), 0 0 10px -2px hsl(var(--primary) / 0.3);
+  }
+  
+  .glow-success {
+    box-shadow: 0 0 20px -5px hsl(var(--success) / 0.5), 0 0 10px -2px hsl(var(--success) / 0.3);
+  }
+
+  .glow-destructive {
+    box-shadow: 0 0 20px -5px hsl(var(--destructive) / 0.5), 0 0 10px -2px hsl(var(--destructive) / 0.3);
+  }
+
+  .text-glow {
+    text-shadow: 0 0 10px currentColor;
+  }
+
+  .glass-panel {
+    @apply bg-card/60 backdrop-blur-xl border border-card-border shadow-2xl;
+  }
+}
+
+/* Radar Animation */
+@keyframes radar-ping {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+  80% {
+    transform: scale(2);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.animate-radar {
+  animation: radar-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
